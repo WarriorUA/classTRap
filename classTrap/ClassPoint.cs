@@ -17,6 +17,7 @@ namespace classTrap
 
     class Trap : ClassPoint
     {
+        public float far = 0;
         public override void setPoints()
         {
             points = new Point[countPoints];
@@ -35,27 +36,6 @@ namespace classTrap
             g.Clear(Color.White);
             g.FillPolygon(new SolidBrush(Color.Aqua), points);
         }
-    }
-
-    class Chetur : ClassPoint
-    {
-        private float far = 0;
-        public override void setPoints()
-        {
-            points = new Point[countPoints];
-        }
-        public void Draw(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.Clear(Color.White);
-            g.DrawPolygon(new Pen(Color.Black,2),points );// FillPolygon(new SolidBrush(Color.Aqua), points);
-        }
-        public void Pouring(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            g.Clear(Color.White);
-            g.FillPolygon(new SolidBrush(Color.Aqua), points);
-        }
         public void Rotate(object sender, PaintEventArgs e)
         {
             far += 30;
@@ -64,6 +44,45 @@ namespace classTrap
             e.Graphics.RotateTransform(far);
             e.Graphics.TranslateTransform(100.0F, 0.0F);
             g.DrawPolygon(new Pen(Color.Black, 2), points);
+        }
+    }
+
+    class Chetur : ClassPoint
+    {
+        public float far = 0;
+        public override void setPoints()
+        {
+            points = new Point[countPoints];
+        }
+        public void Draw(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(Color.White);
+            g.DrawPolygon(new Pen(Color.Black,2),points );
+        }
+        public void Pouring(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.Clear(Color.White);
+            g.FillPolygon(new SolidBrush(Color.Aqua), points);
+        }
+        public void RotatePaint(object sender, PaintEventArgs e)
+        {
+            far += 30;
+            Graphics g = e.Graphics;
+            g.Clear(Color.White);
+            e.Graphics.RotateTransform(far);
+            e.Graphics.TranslateTransform(100.0F, 0.0F);
+            g.DrawPolygon(new Pen(Color.Black, 2), points);
+        }
+        public void RotatePouring(object sender, PaintEventArgs e)
+        {
+            far += 30;
+            Graphics g = e.Graphics;
+            g.Clear(Color.White);
+            e.Graphics.RotateTransform(far);
+            e.Graphics.TranslateTransform(100.0F, 0.0F);
+            g.FillPolygon(new SolidBrush(Color.Aqua), points);
         }
         public void Clear(object sender, PaintEventArgs e)
         {

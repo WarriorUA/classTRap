@@ -12,7 +12,9 @@ namespace classTrap
 {
     public partial class Form1 : Form
     {
+        int num = 1;
         Chetur chetur = new Chetur();
+        Trap trap = new Trap();
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace classTrap
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
+            num = 1;
             chetur.setPoints();
             chetur.points[0].X = int.Parse(textBoxXA.Text);
             chetur.points[0].Y = int.Parse(textBoxYA.Text);
@@ -32,29 +35,49 @@ namespace classTrap
             Graphics g = pictureBoxPaintong.CreateGraphics();
             Rectangle rec = new Rectangle();
             PaintEventArgs es = new PaintEventArgs(g, rec);
-            chetur.Draw(pictureBoxPaintong,es);
+            chetur.Draw(pictureBoxPaintong, es);
         }
 
         private void buttonRotate_Click(object sender, EventArgs e)
         {
+            //chetur.far = 0;
+            //trap.far = 0;
             Graphics g = pictureBoxPaintong.CreateGraphics();
             Rectangle rec = new Rectangle();
             PaintEventArgs es = new PaintEventArgs(g, rec);
-            chetur.Rotate(pictureBoxPaintong,es);
+            switch (num)
+            {
+                case 1:
+                    {
+                        chetur.RotatePaint(pictureBoxPaintong, es);
+                        break;
+                    }
+                case 2:
+                {
+                    chetur.RotatePouring(pictureBoxPaintong,es);
+                        break;
+                }
+                case 3:
+                {
+                    trap.Rotate(pictureBoxPaintong,es);
+                        break;
+                }
+            }
         }
 
         private void buttonTrap_Click(object sender, EventArgs e)
         {
-            Trap trap = new Trap();
+            num = 3;
             Graphics g = pictureBoxPaintong.CreateGraphics();
             Rectangle rec = new Rectangle();
             PaintEventArgs es = new PaintEventArgs(g, rec);
             trap.setPoints();
-            trap.Paint(pictureBoxPaintong,es);
+            trap.Paint(pictureBoxPaintong, es);
         }
 
         private void buttonPouring_Click(object sender, EventArgs e)
         {
+            num = 2;
             chetur.setPoints();
             chetur.points[0].X = int.Parse(textBoxXA.Text);
             chetur.points[0].Y = int.Parse(textBoxYA.Text);
